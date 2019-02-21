@@ -1,30 +1,29 @@
 <template>
-    <form>
-        <label for="email">E-mail</label>
-        <input type="email" placeholder="e-mail" v-model="email" @keyup="saveEmail">
-
-        <input type="submit" value="Entrar">
-    </form> 
-
+    <section class="home-container">
+        <div class="logo">Logo</div>
+        <form @submit.prevent="saveEmail">
+            <div class="email-container">
+                <label class="email-label" for="email">e-mail</label>
+                <input class="email-input" type="email" placeholder="e-mail" v-model="email" required>
+            </div>
+            <input class="access" type="submit" value="Entrar">
+        </form> 
+    </section>
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
-export default {
-    data(){
-        return {
-            email:''
-        }
-    },
-    methods:{
-        saveEmail(){
-            //form params
-            debugger
-            this.$store.dispatch('saveEmail',this.email).then(()=>{
-                this.$router.push('/formulario')
-            })
-        }
-    } 
-    //mapActions(['saveEmail']),
-}
+    export default {
+        data(){
+            return {
+                email: null
+            }
+        },
+        methods:{
+            saveEmail(){
+                this.$store.dispatch('saveEmail',this.email).then(()=>{
+                    this.$router.push('/formulario')
+                })
+            }
+        } 
+    }
 </script>

@@ -13,7 +13,6 @@ export const store = new Vuex.Store({
     },
     mutations: {
         saveEmail(state, email) {
-            debugger
             state.email = email;
             console.log(this.state);
         }

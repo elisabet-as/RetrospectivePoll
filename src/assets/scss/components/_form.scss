@@ -1,0 +1,18 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.email-label {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.email-input {
+    height: 50px;
+    width: 300px;
+    font-size: 20px;
+    padding: 10px;
+}

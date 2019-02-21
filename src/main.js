@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
+import './assets/scss/main.scss';
 import VueRouter from 'vue-router';
 import {routes} from './routes.js';
 import {store} from './store/store';
