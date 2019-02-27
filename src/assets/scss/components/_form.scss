@@ -1,18 +1,33 @@
-form {
+.form {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    padding: 0px 100px;
+    margin: 20px 0; 
 }
 
-.email-label {
-    font-size: 20px;
-    margin-right: 20px;
+.radio-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
-.email-input {
-    height: 50px;
-    width: 300px;
+.radio-row {
+    display: flex;
+}
+
+.only-radio {
+    margin: 0 10px;
+}
+
+.textarea-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.question {
     font-size: 20px;
-    padding: 10px;
 }

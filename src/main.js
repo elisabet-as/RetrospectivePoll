@@ -4,6 +4,7 @@ import './assets/scss/main.scss';
 import VueRouter from 'vue-router';
 import {routes} from './routes.js';
 import {store} from './store/store';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({

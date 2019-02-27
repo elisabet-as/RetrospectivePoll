@@ -15,6 +15,6 @@ export const store = new Vuex.Store({
         saveEmail(state, email) {
             state.email = email;
             console.log(this.state);
-        }
+        },
     }
 });

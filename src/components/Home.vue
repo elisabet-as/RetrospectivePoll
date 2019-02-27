@@ -1,7 +1,7 @@
 <template>
     <section class="home-container">
-        <div class="logo">Logo</div>
-        <form @submit.prevent="saveEmail">
+        <img src="../assets/logo.svg" alt="logo-apeteat" class="logo">
+        <form class="form-email" @submit.prevent="saveEmail">
             <div class="email-container">
                 <label class="email-label" for="email">e-mail</label>
                 <input class="email-input" type="email" placeholder="e-mail" v-model="email" required>
@@ -12,10 +12,11 @@
 </template>
 
 <script>
+    import {MapMutations} from 'vuex';
     export default {
         data(){
             return {
-                email: null
+                email: ""
             }
         },
         methods:{
@@ -23,7 +24,7 @@
                 this.$store.dispatch('saveEmail',this.email).then(()=>{
                     this.$router.push('/formulario')
                 })
-            }
+            },
         } 
     }
 </script>
