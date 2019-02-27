@@ -78,7 +78,7 @@
         methods:{
             sendResults(){
                     
-                // axios.post('http://www.felixoficina.com/comandes/retrospoll/poll.php', {
+                // axios.post('', {
                     for (var i = 0; i < this.formElement.length; i++) {
                         this.formElement[i].question;
                         this.formElement[i].answers;
