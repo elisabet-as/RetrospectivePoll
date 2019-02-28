@@ -1,18 +1,21 @@
 <template>
-    <section>
+    <div class="container">
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo-form">
         <form class="form" @submit.prevent="sendResults">
             <component v-bind="{item}" :key="item.name" :is="item.componentName" v-for="item in formElement">
             </component>
             <input class="send-form" type="submit">
         </form>
-    </section>
+    </div>
 </template>
 
 <script>
     import axios from 'axios';
     import formRadioGroup from './FormRadioGroup.vue';
     import formTextarea from './FormTextarea.vue';
+//Este array es creado para hacer el post de las preguntas.
+    let arrAnswers = []; 
+
     export default {
         components: { 
             formRadioGroup,
@@ -23,52 +26,61 @@
                 formElement: [
                     {
                         question: '¿Qué tal te encuentras?',
+                        answer: '',
                         answers: ['1', '2', '3', '4', '5'],
                         name: 'mood',
                         componentName: 'formRadioGroup' ,
                     },
                     {
                         question: '¿Cómo crees que ha ido el mes?',
+                        answer: '',
                         answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
                         name: 'month',
                         componentName:'formRadioGroup',
                     },
                     {
                         question: '¿Crees que el rendimiento del equipo ha sido el adecuado?',
+                        answer: '',
                         answers: ['Sí', 'No'],
                         name: 'teamPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
                         question: 'Pon una nota al equipo:',
+                        answer: '',
                         answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
                         name: 'teamNote',
                         componentName:'formRadioGroup',
                     },
                     {
                         question: '¿Crees que tu rendimiento ha sido el adecuado?',
+                        answer: '',
                         answers: ['Sí', 'No'],
                         name: 'personalPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
                         question: 'Ponte una nota a ti mism@:',
+                        answer: '',
                         answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
                         name: 'personalNote',
                         componentName:'formRadioGroup',
                     },
                     {
                         question: '¿Qué cosas (positivas) destacarías este último mes? (personal o equipo)',
+                        answer: '',
                         name: 'positiveThings',
                         componentName:'formTextarea',
                     },
                     {
                         question: '¿Qué cosas crees que habría que mejorar para el siguiente mes? (personal o equipo)',
+                        answer: '',
                         name: 'thingsToImprove',
                         componentName: 'formTextarea',
                     },
                     {
                         question: '¿Ideas que se te ocurran para el siguiente mes?',
+                        answer: '',
                         name: 'ideas',
                         componentName:'formTextarea',
                     }
@@ -77,28 +89,28 @@
         },
         methods:{
             sendResults(){
-                    
-                // axios.post('', {
-                    for (var i = 0; i < this.formElement.length; i++) {
-                        this.formElement[i].question;
-                        this.formElement[i].answers;
-                        console.log(this.formElement[i].question);
-                        console.log(this.formElement[i].answers);
+                this.formElement.map((element) => {
+                    const answers = {
+                        question: element.question,
+                        answer: element.answer,
                     }
-                //     question: this.formElement[0].question,
-                //      answer: '',
-                // })
-                // .then(response => {   
-                //     if(response) {
-                //         this.$router.push('/formulario/gracias')
-                //     } else {
-                //         this.$router.push('/formulario/error')
-                //     }
-                // }); 
+                    arrAnswers.push(answers);
+                });
+
+                arrAnswers.map((answerObject)=>{
+                            axios.post('', answerObject.question, answerObject.answer)
+                    .then(response => {
+                        if(response.status.toString().startsWith("2")) {
+                            this.$router.push('/formulario/gracias')
+                        } else {
+                            this.$router.push('/formulario/error')
+                        }
+                    }); 
+                }) 
             }
         },
         beforeRouteLeave (to, from, next) {
-            if (sendResults) {
+            if (this.sendResults) {
                 next();
             } else {
                 next(false);

@@ -1,10 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column; 
+}
+
 .form {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 0px 100px;
-    margin: 20px 0; 
+    margin: 20px 0;
+    font-size: 20px;
+    @media all and (max-width:1400px) {
+        font-size: 15px;
+    }
+    @media all and (max-width:425px) {
+        padding: 0px 50px;
+        text-align: center;
+    } 
 }
 
 .radio-group {
@@ -12,22 +25,53 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    @media all and (max-width:885px) {
+        display: block;
+        margin-bottom: 20px;
+    } 
 }
 
 .radio-row {
     display: flex;
+    @media all and (max-width:425px) {
+        width: 200px;
+        flex-wrap: wrap;
+        margin: auto;
+        justify-content: center;
+    } 
 }
 
 .only-radio {
     margin: 0 10px;
+    @media all and (max-width:425px) {
+        margin: 0px 10px 5px 0px;
+    } 
 }
 
 .textarea-group {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    @media all and (max-width:885px) {
+        display: block;
+        margin-bottom: 20px;
+    } 
+}
+
+.textarea {
+    @media all and (max-width:425px) {
+        width: 250px;
+        height: 100px;
+    } 
+    @media all and (max-width:350px) {
+        width: 200px;
+        height: 80px;
+    } 
 }
 
 .question {
-    font-size: 20px;
+    margin-right: 10px;
+    @media all and (max-width:885px) {
+        margin-bottom: 10px; 
+    } 
 }

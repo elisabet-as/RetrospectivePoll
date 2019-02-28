@@ -1,10 +1,20 @@
 .logo {
-    width: 300px;
+    width: 30%;
     margin-bottom: 250px;
+    @media all and (max-width:1400px) {
+        margin-bottom: 150px;
+    }
+    @media all and (max-width:425px) {
+        width: 50%;
+    }
 }
 
 .logo-form {
     width: 150px;
     height: 100px;
     margin: 20px 0px 0px 100px;
+    @media all and (max-width:425px) {
+        margin: auto;
+        margin-top: 20px;
+    }
 }

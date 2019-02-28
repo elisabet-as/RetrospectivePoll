@@ -3,19 +3,27 @@ import Form from './components/Form.vue';
 import ThanksPage from './components/ThanksPage.vue';
 import ErrorPage from './components/ErrorPage.vue';
 import { store } from './store/store';
-import VueRouter from 'vue-router';
 
 export const routes = [
-    {path: '/', component: Home, name: 'homePage'},
+    {   beforeEnter:((to, from, next) => {
+            if(store.state.email == null | "") {
+                next();
+            } else {
+                next(false);
+            }
+        }),
+        path: '/', component: Home, name: 'homePage'
+    },
     {
-     beforeEnter:((to, from, next) => {
-        if(store.state.email !== null | "") {
-            next();
-        } else {
-            next(false);
-        }
-     }),
-     path: '/formulario', component: Form, name: 'formPage'},
+        beforeEnter:((to, from, next) => {
+            if(store.state.email !== null | "") {
+                next();
+            } else {
+                next(false);
+            }
+        }),
+        path: '/formulario', component: Form, name: 'formPage'
+    },
     {path: '/formulario/gracias', component: ThanksPage, name: 'thanks'},
     {path: '/formulario/error', component: ErrorPage, name: 'error'},
 ]
