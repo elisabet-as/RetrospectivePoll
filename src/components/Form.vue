@@ -98,7 +98,7 @@
                 });
 
                 arrAnswers.map((answerObject)=>{
-                            axios.post('', answerObject.question, answerObject.answer)
+                    axios.post('http://www.felixoficina.com/retrospoll/poll.php', answerObject.question, answerObject.answer)
                     .then(response => {
                         if(response.status.toString().startsWith("2")) {
                             this.$router.push('/formulario/gracias')

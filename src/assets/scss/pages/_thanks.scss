@@ -1,0 +1,25 @@
+.thanks-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-thanks {
+    font-size: 40px;
+    color: #828185;
+    font-weight: bold;
+    @media all and (max-width:425px) {
+        font-size: 30px;
+    }
+}
+
+.smile {
+    font-size: 50px;
+    margin-top: 50px;
+    color: #00d9b4;
+    @media all and (max-width:425px) {
+        font-size: 30px;
+    }
+}
