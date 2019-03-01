@@ -1,7 +1,7 @@
 <template>
-    <div class="thanks-page">
-        <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-thanks">
-        <p class="text-thanks">Gracias</p>
+    <div class="final-page">
+        <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-final">
+        <p class="final-text">Gracias</p>
         <i class="far fa-smile-wink smile animated heartBeat"></i>
     </div>
 </template>
