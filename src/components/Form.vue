@@ -83,7 +83,7 @@
                         componentName:'formTextarea',
                     }
                 ],
-                API_URL:'',
+                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
                 arrAnswers: [],
                 failedRequests: [],
             }
@@ -93,10 +93,10 @@
                 let promises = []
                  
                 this.formElement.map((element) => {
-                    const requestBody = {
-                        question: element.question,
-                        answer: element.answer,
-                    }    
+                    let requestBody = new FormData();
+                    requestBody.append('question',element.question)
+                    requestBody.append('answer',element.answer)
+
                     promises.push(this.getRequestPromise(requestBody))    
                 })
 
