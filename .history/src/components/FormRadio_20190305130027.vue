@@ -14,9 +14,6 @@
             answerLabel: {
                 type: String,
             },
-            index: {
-                type: Number,
-            }
         },
     }
 </script>

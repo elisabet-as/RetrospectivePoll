@@ -115,7 +115,7 @@
             },
 
             isRequestCorrect(response, requestBody){ 
-                if(response.status.toString().startsWith("3")){
+                if(response.status.toString().startsWith("2")){
                     return true         
                 }else{
                     this.failedRequests.push(requestBody)

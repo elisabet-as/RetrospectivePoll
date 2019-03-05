@@ -1,7 +1,7 @@
 <template>
         <div class="only-radio">
-            <label :for="index">{{ answerLabel }}</label>
-            <input type="radio" v-model="item.answer" :value="answerLabel" :name="item.name" :id="index" required>
+            <label :for="item.name">{{ answerLabel }}</label>
+            <input type="radio" v-model="item.answer" :value="answerLabel" :name="item.name" :id="item.name" required>
         </div>
 </template>
 
@@ -14,9 +14,6 @@
             answerLabel: {
                 type: String,
             },
-            index: {
-                type: Number,
-            }
         },
     }
 </script>

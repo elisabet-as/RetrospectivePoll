@@ -5,8 +5,8 @@
         <i class="far fa-frown-open emoticon animated heartBeat"></i>
         <ul class="questions">
             <li v-for="(failedRequest, index) in failedRequests" :key="index">
-                <p class="text-questions">{{ failedRequest.question }}</p>
-                <p class="text-questions">{{ failedRequest.answer }}</p>
+                <p class="text-questions error-question">{{ failedRequest.question }}</p>
+                <p class="text-questions error-answer">{{ failedRequest.answer }}</p>
             </li>
         </ul>
     </div>

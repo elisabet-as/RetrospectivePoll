@@ -36,7 +36,12 @@
     text-align: center;
     margin-top: 5px;
     font-size: 20px;
+    font-weight: bold;
     @media all and (max-width:1400px) {
         font-size: 15px;
     }
 }
+
+.error-question {
+    color: #828185;
+} 

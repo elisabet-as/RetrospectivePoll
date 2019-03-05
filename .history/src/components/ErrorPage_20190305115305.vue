@@ -3,10 +3,9 @@
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-final">
         <p class="final-text">Error</p>
         <i class="far fa-frown-open emoticon animated heartBeat"></i>
-        <ul class="questions">
-            <li v-for="(failedRequest, index) in failedRequests" :key="index">
-                <p class="text-questions">{{ failedRequest.question }}</p>
-                <p class="text-questions">{{ failedRequest.answer }}</p>
+        <ul v-for="failedRequest in failedRequests" :key="failedRequest.i">
+            <li>
+                <p>{{ failedRequest.question }} {{failedRequest.answer }}</p>
             </li>
         </ul>
     </div>
