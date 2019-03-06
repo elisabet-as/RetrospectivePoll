@@ -13,11 +13,12 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     export default {
         computed: {
-            failedRequests() {
-                return this.$store.state.failedRequests
-            }
+            ...mapGetters ({
+                failedRequests: 'saveFailedRequests',
+            })
         },
         beforeRouteLeave (to, from, next) {
             next(false);

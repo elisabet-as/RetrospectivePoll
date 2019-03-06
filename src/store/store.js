@@ -24,5 +24,14 @@ export const store = new Vuex.Store({
         saveFailedRequests(state, failedRequests) {
             state.failedRequests = failedRequests;
         }
+    },
+    getters: {
+        saveEmail(state) {
+            return state.email;
+        },
+
+        saveFailedRequests(state) {
+            return state.failedRequests;
+        }
     }
 });
