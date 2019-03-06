@@ -1,7 +1,7 @@
 <template>
         <div class="only-radio">
-            <label :for="`${item.name}${answerLabel}`">{{ answerLabel }}</label>
-            <input type="radio" v-model="item.answer" :value="answerLabel" :name="item.name" :id="`${item.name}${answerLabel}`" required>
+            <label :for="idRadio">{{ answerLabel }}</label>
+            <input type="radio" v-model="item.answer" :value="answerLabel" :name="item.name" :id="idRadio" required>
         </div>
 </template>
 
@@ -18,5 +18,10 @@
                 type: Number,
             }
         },
+        computed: {
+            idRadio: function () {
+               return this.item.name + this.answerLabel
+            } 
+        }
     }
 </script>
