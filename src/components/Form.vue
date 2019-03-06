@@ -83,7 +83,7 @@
                         componentName:'formTextarea',
                     }
                 ],
-                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
+                API_URL:'',
                 failedRequests: [],
             }
         },
@@ -118,7 +118,7 @@
             },
 
             isRequestCorrect(response, questionObject){ 
-                if(response.status.toString().startsWith("2")){
+                if(response.status.toString().startsWith("3")){
                     return true         
                 }else{
                     this.updateFailedRequests(questionObject);
