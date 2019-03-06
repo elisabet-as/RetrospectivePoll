@@ -25,14 +25,14 @@
                     {
                         question: '¿Qué tal te encuentras?',
                         answer: '',
-                        answers: ['1', '2', '3', '4', '5'],
+                        answers: this.arrAnswers(5),
                         name: 'mood',
                         componentName: 'formRadioGroup' ,
                     },
                     {
                         question: '¿Cómo crees que ha ido el mes?',
                         answer: '',
-                        answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                        answers: this.arrAnswers(10),
                         name: 'month',
                         componentName:'formRadioGroup',
                     },
@@ -46,7 +46,7 @@
                     {
                         question: 'Pon una nota al equipo:',
                         answer: '',
-                        answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                        answers: this.arrAnswers(10),
                         name: 'teamNote',
                         componentName:'formRadioGroup',
                     },
@@ -60,7 +60,7 @@
                     {
                         question: 'Ponte una nota a ti mism@:',
                         answer: '',
-                        answers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                        answers: this.arrAnswers(10),
                         name: 'personalNote',
                         componentName:'formRadioGroup',
                     },
@@ -88,6 +88,10 @@
             }
         },
         methods: {
+            arrAnswers(length) {
+                return Array.from({length}, (v, k) => k + 1);
+            },
+
             sendResults(){
                 let promises = []
                  
