@@ -6,7 +6,7 @@ import { store } from './store/store';
 
 export const routes = [
     {   beforeEnter:((to, from, next) => {
-            if(store.state.email == null | "") {
+            if(store.getters.email == null | "") {
                 next();
             } else {
                 next(false);
@@ -16,7 +16,7 @@ export const routes = [
     },
     {
         beforeEnter:((to, from, next) => {
-            if(store.state.email !== null | "") {
+            if(store.getters.email !== null | "") {
                 next();
             } else {
                 next(false);

@@ -16,9 +16,9 @@
     import { mapGetters } from 'vuex';
     export default {
         computed: {
-            ...mapGetters ({
-                failedRequests: 'saveFailedRequests',
-            })
+            ...mapGetters ([
+                'failedRequests'
+            ])
         },
         beforeRouteLeave (to, from, next) {
             next(false);

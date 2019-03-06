@@ -12,8 +12,8 @@ export const store = new Vuex.Store({
             return state.commit('saveEmail', email);
         },
 
-        saveFailedRequests(state, failedRequests) {
-            return state.commit('saveFailedRequests', failedRequests);
+        updateFailedRequests(state, failedRequest) {
+            return state.commit('updateFailedRequests', failedRequest);
         }
     },
     mutations: {
@@ -21,16 +21,16 @@ export const store = new Vuex.Store({
             state.email = email;
         },
 
-        saveFailedRequests(state, failedRequests) {
-            state.failedRequests = failedRequests;
+        updateFailedRequests(state, failedRequest) {
+            state.failedRequests.push(failedRequest);
         }
     },
     getters: {
-        saveEmail(state) {
+        email(state) {
             return state.email;
         },
 
-        saveFailedRequests(state) {
+        failedRequests(state) {
             return state.failedRequests;
         }
     }
