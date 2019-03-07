@@ -21,6 +21,7 @@
         },
         data(){
             return {
+                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
                 formElement: [
                     {
                         question: '¿Qué tal te encuentras?',
@@ -83,20 +84,28 @@
                         componentName:'formTextarea',
                     }
                 ],
-                API_URL:'',
-                failedRequests: [],
+                arrAnswers: [],
+                count: 0,
+                
             }
         },
-        methods: {
+        methods:{
             sendResults(){
-                let promises = []
+                let promises=[]
                  
                 this.formElement.map((element) => {
-                    promises.push(this.getRequestPromise(element))    
+                    const requestBody={
+                        question: element.question,
+                        answer: element.answer,
+                    }    
+                    promises.push(this.getRequestPromise(requestBody))    
                 })
+                
 
-                Promise.all(promises).then(promisesResult => {
-                    if(promisesResult.indexOf(false) != -1) {
+                Promise.all(promises).then(promiseResult => { 
+                    debugger
+                    if(promiseResult.indexOf(false) != -1) {
+                        debugger
                         this.$router.push('/formulario/error')
                     } else {
                         this.$router.push('/formulario/gracias')
@@ -104,33 +113,21 @@
                 })
             },
 
-            getRequestPromise(questionObject){
-                return axios.post(this.API_URL, this.getFormDataByObject(questionObject)).then(response => {
-                    return this.isRequestCorrect(response, questionObject)
-                })
+            getRequestPromise(requestBody){
+               
+                return axios.post(this.API_URL, requestBody).then(response => this.isRequestCorrect(response))
             },
 
-            getFormDataByObject(questionObject){
-                let formData = new FormData();
-                formData.append('question',questionObject.question)
-                formData.append('answer',questionObject.answer)
-                return formData
-            },
-
-            isRequestCorrect(response, questionObject){ 
-                if(response.status.toString().startsWith("3")){
+            isRequestCorrect(response){
+                this.count++     
+                if(this.count % 2 == 0){
                     return true         
                 }else{
-                    this.updateFailedRequests(questionObject);
                     return false
                 }
-            },
-
-            updateFailedRequests(questionObject) {
-                this.$store.dispatch('updateFailedRequests', questionObject)
+                // return response.status.toString().startsWith("2") 
             }
         },
-
         beforeRouteLeave (to, from, next) {
             if (this.sendResults) {
                 next();

@@ -83,7 +83,8 @@
                         componentName:'formTextarea',
                     }
                 ],
-                API_URL:'',
+                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
+                arrAnswers: [],
                 failedRequests: [],
             }
         },
@@ -92,7 +93,11 @@
                 let promises = []
                  
                 this.formElement.map((element) => {
-                    promises.push(this.getRequestPromise(element))    
+                    const requestBody = {
+                        question: element.question,
+                        answer: element.answer,
+                    }    
+                    promises.push(this.getRequestPromise(requestBody))    
                 })
 
                 Promise.all(promises).then(promisesResult => {
@@ -102,32 +107,24 @@
                         this.$router.push('/formulario/gracias')
                     }
                 })
+                this.saveFailedRequests();
             },
 
-            getRequestPromise(questionObject){
-                return axios.post(this.API_URL, this.getFormDataByObject(questionObject)).then(response => {
-                    return this.isRequestCorrect(response, questionObject)
-                })
+            getRequestPromise(requestBody){
+                return axios.post(this.API_URL, requestBody).then(response => this.isRequestCorrect(response, requestBody))
             },
 
-            getFormDataByObject(questionObject){
-                let formData = new FormData();
-                formData.append('question',questionObject.question)
-                formData.append('answer',questionObject.answer)
-                return formData
-            },
-
-            isRequestCorrect(response, questionObject){ 
+            isRequestCorrect(response, requestBody){ 
                 if(response.status.toString().startsWith("3")){
                     return true         
                 }else{
-                    this.updateFailedRequests(questionObject);
+                    this.failedRequests.push(requestBody)
                     return false
                 }
             },
 
-            updateFailedRequests(questionObject) {
-                this.$store.dispatch('updateFailedRequests', questionObject)
+            saveFailedRequests() {
+                this.$store.dispatch('saveFailedRequests', this.failedRequests)
             }
         },
 

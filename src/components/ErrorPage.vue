@@ -1,0 +1,27 @@
+<template>
+    <div class="final-page">
+        <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-final">
+        <p class="final-text">Error</p>
+        <i class="far fa-frown-open emoticon animated heartBeat"></i>
+        <ul class="questions">
+            <li v-for="(failedRequest, index) in failedRequests" :key="index">
+                <p class="text-questions">{{ failedRequest.question }}</p>
+                <p class="text-questions">{{ failedRequest.answer }}</p>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+    import { mapGetters } from 'vuex';
+    export default {
+        computed: {
+            ...mapGetters ([
+                'failedRequests'
+            ])
+        },
+        beforeRouteLeave (to, from, next) {
+            next(false);
+        }
+    }
+</script>
