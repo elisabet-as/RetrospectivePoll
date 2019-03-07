@@ -1,7 +1,7 @@
 <template>
     <div class="final-page">
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-final">
-        <p class="final-text">Gracias</p>
+        <p class="final-text">{{ $t('message.finalPage.success') }}</p>
         <i class="far fa-smile-wink emoticon animated heartBeat"></i>
     </div>
 </template>

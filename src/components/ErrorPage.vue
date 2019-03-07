@@ -1,7 +1,7 @@
 <template>
     <div class="final-page">
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-final">
-        <p class="final-text">Error</p>
+        <p class="final-text">{{ $t('message.finalPage.error') }}</p>
         <i class="far fa-frown-open emoticon animated heartBeat"></i>
         <ul class="questions">
             <li v-for="(failedRequest, index) in failedRequests" :key="index">

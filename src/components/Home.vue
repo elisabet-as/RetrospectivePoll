@@ -6,7 +6,7 @@
                 <label class="email-label" for="email">e-mail</label>
                 <input class="email-input" type="email" placeholder="e-mail" v-model="email" required>
             </div>
-            <input class="access" type="submit" value="Entrar">
+            <input class="access" type="submit" :value="$t('message.buttons.home')">
         </form> 
     </section>
 </template>

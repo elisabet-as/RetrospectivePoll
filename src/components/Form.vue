@@ -4,7 +4,7 @@
         <form class="form" @submit.prevent="sendResults">
             <component v-bind="{item}" :key="item.name" :is="item.componentName" v-for="item in formElement">
             </component>
-            <input class="send-form" type="submit">
+            <input class="send-form" type="submit" :value="$t('message.buttons.form')">
         </form>
     </div>
 </template>
@@ -13,7 +13,7 @@
     import axios from 'axios';
     import formRadioGroup from './FormRadioGroup.vue';
     import formTextarea from './FormTextarea.vue';
-
+    
     export default {
         components: { 
             formRadioGroup,
@@ -23,67 +23,67 @@
             return {
                 formElement: [
                     {
-                        question: '¿Qué tal te encuentras?',
+                        question: this.$t('message.form.mood'),
                         answer: '',
                         answers: this.arrAnswers(5),
                         name: 'mood',
                         componentName: 'formRadioGroup' ,
                     },
                     {
-                        question: '¿Cómo crees que ha ido el mes?',
+                        question: this.$t('message.form.month'),
                         answer: '',
                         answers: this.arrAnswers(10),
                         name: 'month',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: '¿Crees que el rendimiento del equipo ha sido el adecuado?',
+                        question: this.$t('message.form.teamPerformance'),
                         answer: '',
-                        answers: ['Sí', 'No'],
+                        answers: [this.$t('message.response'), 'No'],
                         name: 'teamPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: 'Pon una nota al equipo:',
+                        question: this.$t('message.form.teamMark'),
                         answer: '',
                         answers: this.arrAnswers(10),
-                        name: 'teamNote',
+                        name: 'teamMark',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: '¿Crees que tu rendimiento ha sido el adecuado?',
+                        question: this.$t('message.form.personalPerformance'),
                         answer: '',
-                        answers: ['Sí', 'No'],
+                        answers: [this.$t('message.response'), 'No'],
                         name: 'personalPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: 'Ponte una nota a ti mism@:',
+                        question: this.$t('message.form.personalMark'),
                         answer: '',
                         answers: this.arrAnswers(10),
-                        name: 'personalNote',
+                        name: 'personalMark',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: '¿Qué cosas (positivas) destacarías este último mes? (personal o equipo)',
+                        question: this.$t('message.form.positiveThings'),
                         answer: '',
                         name: 'positiveThings',
                         componentName:'formTextarea',
                     },
                     {
-                        question: '¿Qué cosas crees que habría que mejorar para el siguiente mes? (personal o equipo)',
+                        question: this.$t('message.form.thingsToImprove'),
                         answer: '',
                         name: 'thingsToImprove',
                         componentName: 'formTextarea',
                     },
                     {
-                        question: '¿Ideas que se te ocurran para el siguiente mes?',
+                        question: this.$t('message.form.ideas'),
                         answer: '',
                         name: 'ideas',
                         componentName:'formTextarea',
                     }
                 ],
-                API_URL:'',
+                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
                 failedRequests: [],
             }
         },
@@ -122,7 +122,7 @@
             },
 
             isRequestCorrect(response, questionObject){ 
-                if(response.status.toString().startsWith("3")){
+                if(response.status.toString().startsWith("2")){
                     return true         
                 }else{
                     this.updateFailedRequests(questionObject);
