@@ -13,8 +13,6 @@
     import axios from 'axios';
     import formRadioGroup from './FormRadioGroup.vue';
     import formTextarea from './FormTextarea.vue';
-//Este array es creado para hacer el post de las preguntas.
-    let arrAnswers = []; 
 
     export default {
         components: { 
@@ -84,31 +82,55 @@
                         name: 'ideas',
                         componentName:'formTextarea',
                     }
-                ]
+                ],
+                API_URL:'',
+                failedRequests: [],
             }
         },
-        methods:{
+        methods: {
             sendResults(){
+                let promises = []
+                 
                 this.formElement.map((element) => {
-                    const answers = {
-                        question: element.question,
-                        answer: element.answer,
-                    }
-                    arrAnswers.push(answers);
-                });
+                    promises.push(this.getRequestPromise(element))    
+                })
 
-                arrAnswers.map((answerObject)=>{
-                    axios.post('', answerObject.question, answerObject.answer)
-                    .then(response => {
-                        if(response.status.toString().startsWith("2")) {
-                            this.$router.push('/formulario/gracias')
-                        } else {
-                            this.$router.push('/formulario/error')
-                        }
-                    }); 
-                }) 
+                Promise.all(promises).then(promisesResult => {
+                    if(promisesResult.indexOf(false) != -1) {
+                        this.$router.push('/formulario/error')
+                    } else {
+                        this.$router.push('/formulario/gracias')
+                    }
+                })
+            },
+
+            getRequestPromise(questionObject){
+                return axios.post(this.API_URL, this.getFormDataByObject(questionObject)).then(response => {
+                    return this.isRequestCorrect(response, questionObject)
+                })
+            },
+
+            getFormDataByObject(questionObject){
+                let formData = new FormData();
+                formData.append('question',questionObject.question)
+                formData.append('answer',questionObject.answer)
+                return formData
+            },
+
+            isRequestCorrect(response, questionObject){ 
+                if(response.status.toString().startsWith("3")){
+                    return true         
+                }else{
+                    this.updateFailedRequests(questionObject);
+                    return false
+                }
+            },
+
+            updateFailedRequests(questionObject) {
+                this.$store.dispatch('updateFailedRequests', questionObject)
             }
         },
+
         beforeRouteLeave (to, from, next) {
             if (this.sendResults) {
                 next();

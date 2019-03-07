@@ -6,7 +6,7 @@ import { store } from './store/store';
 
 export const routes = [
     {   beforeEnter:((to, from, next) => {
-            if(store.state.email == null | "") {
+            if(store.getters.email == null | "") {
                 next();
             } else {
                 next(false);
@@ -16,7 +16,7 @@ export const routes = [
     },
     {
         beforeEnter:((to, from, next) => {
-            if(store.state.email !== null | "") {
+            if(store.getters.email !== null | "") {
                 next();
             } else {
                 next(false);
@@ -25,5 +25,5 @@ export const routes = [
         path: '/formulario', component: Form, name: 'formPage'
     },
     {path: '/formulario/gracias', component: ThanksPage, name: 'thanks'},
-    {path: '/formulario/error', component: ErrorPage, name: 'error'},
+    {path: '/formulario/error', component: ErrorPage, name: 'error'}
 ]
