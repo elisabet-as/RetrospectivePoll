@@ -12,7 +12,7 @@
                 type: Object,
             },
             answerLabel: {
-                type: String,
+                type: [String, Number],
             },
             index: {
                 type: Number,
