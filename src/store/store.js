@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { SAVE_EMAIL } from './mutation-types';
+import { UPDATE_FAILED_REQUESTS } from './mutation-types';
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -9,19 +12,19 @@ export const store = new Vuex.Store({
     },
     actions: {
         saveEmail(state, email) {
-            return state.commit('saveEmail', email);
+            return state.commit('SAVE_EMAIL', email);
         },
 
         updateFailedRequests(state, failedRequest) {
-            return state.commit('updateFailedRequests', failedRequest);
+            return state.commit('UPDATE_FAILED_REQUESTS', failedRequest);
         }
     },
     mutations: {
-        saveEmail(state, email) {
+        [SAVE_EMAIL] (state, email) {
             state.email = email;
         },
 
-        updateFailedRequests(state, failedRequest) {
+        [UPDATE_FAILED_REQUESTS] (state, failedRequest) {
             state.failedRequests.push(failedRequest);
         }
     },
