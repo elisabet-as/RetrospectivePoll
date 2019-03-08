@@ -95,7 +95,7 @@
                     { flag: 'es', language: 'es-ES', title: 'Español' },
                     { flag: 'es', language: 'ca-ES', title: 'Catalán' },
                 ],
-                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
+                API_URL:'',
                 failedRequests: [],
             }
         },
