@@ -1,5 +1,11 @@
 <template>
     <div class="container">
+        <div class="languages-container_form">
+            <button class="language" v-for="entry in languages" :key="entry.title" @click="changeLocale(entry.language)">
+                <flag :iso="entry.flag" /> 
+                {{entry.title}}
+            </button>
+        </div>
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo-form">
         <form class="form" @submit.prevent="sendResults">
             <component v-bind="{item}" :key="item.name" :is="item.componentName" v-for="item in formElement">
@@ -13,7 +19,8 @@
     import axios from 'axios';
     import formRadioGroup from './FormRadioGroup.vue';
     import formTextarea from './FormTextarea.vue';
-    
+    import i18n from '../i18n';
+
     export default {
         components: { 
             formRadioGroup,
@@ -83,11 +90,21 @@
                         componentName:'formTextarea',
                     }
                 ],
-                API_URL:'',
+                languages: [
+                    { flag: 'us', language: 'en-US', title: 'English' },
+                    { flag: 'es', language: 'es-ES', title: 'Español' },
+                    { flag: 'es', language: 'ca-ES', title: 'Catalán' },
+                ],
+                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
                 failedRequests: [],
             }
         },
+
         methods: {
+            changeLocale(language) {
+                this.$store.dispatch('changeLocale', language)
+            },
+
             arrAnswers(length) {
                 return Array.from({length}, (v, k) => k + 1);
             },

@@ -1,5 +1,11 @@
 <template>
     <section class="home-container">
+        <div class="languages-container">
+            <button class="language" v-for="entry in languages" :key="entry.title" @click="changeLocale(entry.language)">
+                <flag :iso="entry.flag" />
+                {{entry.title}}
+            </button>
+        </div>
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo">
         <form class="form-email" @submit.prevent="saveEmail">
             <div class="email-container">
@@ -12,10 +18,16 @@
 </template>
 
 <script>
+
     export default {
         data(){
             return {
-                email: ""
+                email: "",
+                languages: [
+                    { flag: 'us', language: 'en-US', title: 'English' },
+                    { flag: 'es', language: 'es-ES', title: 'Español' },
+                    { flag: 'es', language: 'ca-ES', title: 'Catalán' },
+                ]
             }
         },
         methods:{
@@ -24,6 +36,9 @@
                     this.$router.push('/formulario')
                 })
             },
+            changeLocale(language) {
+                this.$store.dispatch('changeLocale', language)
+            }
         } 
     }
 </script>
