@@ -5,7 +5,7 @@ Vue.use(VueI18n);
 
 
 export default new VueI18n({
-  locale:'en-US',
+  locale:'es-ES',
   messages:{
     'es-ES': {
       message: {
@@ -13,9 +13,9 @@ export default new VueI18n({
           mood: '¿Qué tal te encuentras?',
           month: '¿Cómo crees que ha ido el mes?',
           teamPerformance: '¿Crees que el rendimiento del equipo ha sido el adecuado?',
-          teamNote: 'Pon una nota al equipo:',
+          teamMark: 'Pon una nota al equipo:',
           personalPerformance: '¿Crees que tu rendimiento ha sido el adecuado?',
-          personalNote: 'Ponte una nota a ti mism@:',
+          personalMark: 'Ponte una nota a ti mism@:',
           positiveThings: '¿Qué cosas (positivas) destacarías este último mes? (personal o equipo)',
           thingsToImprove: '¿Qué cosas crees que habría que mejorar para el siguiente mes? (personal o equipo)',
           ideas: '¿Ideas que se te ocurran para el siguiente mes?'
@@ -53,7 +53,31 @@ export default new VueI18n({
           success: 'Thanks',
           error: 'Error'
         }
-      },
-    }
+      }
+    },
+    'ca-ES': {
+      message: {
+        form: {
+          mood: 'Què tal et trobes?',
+          month: 'Com creus que ha anat el mes?',
+          teamPerformance: `Creus que el rendiment de l'equip ha estat l'adequat?`,
+          teamMark: `Posa una nota a l'equip:`,
+          personalPerformance: `Creus que el teu rendiment ha estat l'adequat?`,
+          personalMark: `Posa't una nota a tu mateix:`,
+          positiveThings: `Quines coses (positives) destacaries d'aquest últim mes? (Personal o equip)`,
+          thingsToImprove: 'Quines coses creus que caldria millorar per al següent mes? (Personal o equip)',
+          ideas: '¿Idees que et passin pel següent mes?'
+        },
+        buttons: {
+          home: 'Entrar',
+          form: 'Enviar'
+        },
+        response: 'Sí',
+        finalPage: {
+          success: 'Gràcies',
+          error: 'Error'
+        }
+      }
+    },
   }
 })

@@ -83,7 +83,7 @@
                         componentName:'formTextarea',
                     }
                 ],
-                API_URL:'http://www.felixoficina.com/retrospoll/poll.php',
+                API_URL:'',
                 failedRequests: [],
             }
         },
