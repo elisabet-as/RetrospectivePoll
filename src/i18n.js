@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import { store } from './store/store';
 
+
 Vue.use(VueI18n);
 
 export default new VueI18n({
@@ -24,7 +25,10 @@ export default new VueI18n({
           home: 'Entrar',
           form: 'Enviar'
         },
-        response: 'Sí',
+        response: {
+          positive: 'Sí',
+          negative: 'No'
+        },
         finalPage: {
           success: 'Gracias',
           error: 'Error'
@@ -48,31 +52,37 @@ export default new VueI18n({
           home: 'Enter',
           form: 'Send'
         },
-        response: 'Yes',
+        response: {
+          positive: 'Yes',
+          negative: 'No'
+        },
         finalPage: {
           success: 'Thanks',
           error: 'Error'
         }
       }
     },
-    'ca-ES': {
+    'ca': {
       message: {
         form: {
-          mood: 'Què tal et trobes?',
+          mood: 'Com et sents?',
           month: 'Com creus que ha anat el mes?',
           teamPerformance: `Creus que el rendiment de l'equip ha estat l'adequat?`,
           teamMark: `Posa una nota a l'equip:`,
           personalPerformance: `Creus que el teu rendiment ha estat l'adequat?`,
-          personalMark: `Posa't una nota a tu mateix:`,
+          personalMark: `Posa't una nota:`,
           positiveThings: `Quines coses (positives) destacaries d'aquest últim mes? (Personal o equip)`,
           thingsToImprove: 'Quines coses creus que caldria millorar per al següent mes? (Personal o equip)',
-          ideas: '¿Idees que et passin pel següent mes?'
+          ideas: `Se t'acuden algunes idees per al més que ve?`
         },
         buttons: {
           home: 'Entrar',
           form: 'Enviar'
         },
-        response: 'Sí',
+        response: {
+          positive: 'Sí',
+          negative: 'No'
+        },
         finalPage: {
           success: 'Gràcies',
           error: 'Error'

@@ -1,6 +1,6 @@
 <template>
         <div class="only-radio">
-            <label :for="idRadio">{{ answerLabel }}</label>
+            <label :for="idRadio">{{ translateAnswerLabel() }}</label>
             <input type="radio" v-model="item.answer" :value="answerLabel" :name="item.name" :id="idRadio" required>
         </div>
 </template>
@@ -22,6 +22,16 @@
             idRadio: function () {
                return this.item.name + this.answerLabel
             } 
+        },
+
+        methods: {
+            translateAnswerLabel() {
+                if(isNaN(this.answerLabel)) {
+                    return this.$t(this.answerLabel)
+                } else {
+                    return this.answerLabel
+                }
+            }
         }
     }
-</script>
+</script>1

@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import { SAVE_EMAIL } from './mutation-types';
 import { UPDATE_FAILED_REQUESTS } from './mutation-types';
 import { CHANGE_LOCALE } from './mutation-types';
-
+const browserLocale = require('browser-locale')();
 
 Vue.use(Vuex);
 
@@ -11,7 +11,12 @@ export const store = new Vuex.Store({
     state: {
         email: null,
         failedRequests: [],
-        locale: 'es-ES',
+        locale: browserLocale,
+        languages: [
+            { flag: 'us', language: 'en-US', title: 'English' },
+            { flag: 'es', language: 'es-ES', title: 'Español' },
+            { flag: 'es', language: 'ca', title: 'Catalán' },
+        ],
     },
     actions: {
         saveEmail(state, email) {
@@ -50,6 +55,10 @@ export const store = new Vuex.Store({
 
         locale(state) {
             return state.locale;
+        },
+
+        languages(state) {
+            return state.languages;
         }
 
     }

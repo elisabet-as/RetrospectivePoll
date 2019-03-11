@@ -1,11 +1,6 @@
 <template>
     <div class="container">
-        <div class="languages-container_form">
-            <button class="language" v-for="entry in languages" :key="entry.title" @click="changeLocale(entry.language)">
-                <flag :iso="entry.flag" /> 
-                {{entry.title}}
-            </button>
-        </div>
+        <languageButtons @changeLocale="changeLocale"></languageButtons>
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo-form">
         <form class="form" @submit.prevent="sendResults">
             <component v-bind="{item}" :key="item.name" :is="item.componentName" v-for="item in formElement">
@@ -20,80 +15,81 @@
     import formRadioGroup from './FormRadioGroup.vue';
     import formTextarea from './FormTextarea.vue';
     import i18n from '../i18n';
+    import languageButtons from './LanguageButtons';
+    import LanguageMixin from '../mixins/LanguageMixin';
 
     export default {
         components: { 
             formRadioGroup,
-            formTextarea
+            formTextarea,
+            languageButtons
         },
+
+        mixins:[LanguageMixin],
+
         data(){
             return {
                 formElement: [
                     {
-                        question: this.$t('message.form.mood'),
+                        question: 'message.form.mood',
                         answer: '',
                         answers: this.arrAnswers(5),
                         name: 'mood',
                         componentName: 'formRadioGroup' ,
                     },
                     {
-                        question: this.$t('message.form.month'),
+                        question: 'message.form.month',
                         answer: '',
                         answers: this.arrAnswers(10),
                         name: 'month',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: this.$t('message.form.teamPerformance'),
+                        question: 'message.form.teamPerformance',
                         answer: '',
-                        answers: [this.$t('message.response'), 'No'],
+                        answers: ['message.response.positive', 'message.response.negative'],
                         name: 'teamPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: this.$t('message.form.teamMark'),
+                        question: 'message.form.teamMark',
                         answer: '',
                         answers: this.arrAnswers(10),
                         name: 'teamMark',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: this.$t('message.form.personalPerformance'),
+                        question: 'message.form.personalPerformance',
                         answer: '',
-                        answers: [this.$t('message.response'), 'No'],
+                        answers: ['message.response.positive', 'message.response.negative'],
                         name: 'personalPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: this.$t('message.form.personalMark'),
+                        question: 'message.form.personalMark',
                         answer: '',
                         answers: this.arrAnswers(10),
                         name: 'personalMark',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: this.$t('message.form.positiveThings'),
+                        question: 'message.form.positiveThings',
                         answer: '',
                         name: 'positiveThings',
                         componentName:'formTextarea',
                     },
                     {
-                        question: this.$t('message.form.thingsToImprove'),
+                        question: 'message.form.thingsToImprove',
                         answer: '',
                         name: 'thingsToImprove',
                         componentName: 'formTextarea',
                     },
                     {
-                        question: this.$t('message.form.ideas'),
+                        question: 'message.form.ideas',
                         answer: '',
                         name: 'ideas',
                         componentName:'formTextarea',
                     }
-                ],
-                languages: [
-                    { flag: 'us', language: 'en-US', title: 'English' },
-                    { flag: 'es', language: 'es-ES', title: 'Español' },
-                    { flag: 'es', language: 'ca-ES', title: 'Catalán' },
                 ],
                 API_URL:'',
                 failedRequests: [],
@@ -101,10 +97,6 @@
         },
 
         methods: {
-            changeLocale(language) {
-                this.$store.dispatch('changeLocale', language)
-            },
-
             arrAnswers(length) {
                 return Array.from({length}, (v, k) => k + 1);
             },
