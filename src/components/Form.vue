@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <languageButtons @changeLocale="changeLocale"></languageButtons>
+        <LanguageButtons @changeLocale="changeLocale"></LanguageButtons>
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo-form">
         <form class="form" @submit.prevent="sendResults">
             <component v-bind="{item}" :key="item.name" :is="item.componentName" v-for="item in formElement">
@@ -12,17 +12,17 @@
 
 <script>
     import axios from 'axios';
-    import formRadioGroup from './FormRadioGroup.vue';
-    import formTextarea from './FormTextarea.vue';
+    import FormRadioGroup from './FormRadioGroup.vue';
+    import FormTextarea from './FormTextarea.vue';
     import i18n from '../i18n';
-    import languageButtons from './LanguageButtons';
+    import LanguageButtons from './LanguageButtons';
     import LanguageMixin from '../mixins/LanguageMixin';
 
     export default {
         components: { 
-            formRadioGroup,
-            formTextarea,
-            languageButtons
+            FormRadioGroup,
+            FormTextarea,
+            LanguageButtons
         },
 
         mixins:[LanguageMixin],

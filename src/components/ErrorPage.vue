@@ -1,6 +1,6 @@
 <template>
     <div class="final-page">
-        <languageButtons @changeLocale="changeLocale"></languageButtons>
+        <LanguageButtons @changeLocale="changeLocale"></LanguageButtons>
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-final l-error">
         <p class="final-text">{{ $t('message.finalPage.error') }}</p>
         <i class="far fa-frown-open emoticon animated heartBeat"></i>
@@ -16,12 +16,12 @@
 <script>
     import i18n from '../i18n';
     import { mapGetters } from 'vuex';
-    import languageButtons from './LanguageButtons';
+    import LanguageButtons from './LanguageButtons';
     import LanguageMixin from '../mixins/LanguageMixin';
 
     export default {
         components: { 
-            languageButtons
+            LanguageButtons
         },
 
         mixins:[LanguageMixin],
