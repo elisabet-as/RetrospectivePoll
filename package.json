@@ -1,27 +1,25 @@
 {
   "name": "retrospectivepoll",
-  "description": "A Vue.js project",
   "version": "1.0.0",
-  "author": "Elisabet",
-  "license": "MIT",
   "private": true,
+  "description": "A Vue.js project",
+  "author": "Elisabet",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "browser-locale": "^1.0.3",
     "vue": "2.6.6",
+    "vue-flag-icon": "^1.0.6",
+    "vue-i18n": "^8.8.2",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.3.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
@@ -31,9 +29,16 @@
     "file-loader": "^1.1.4",
     "node-sass": "^4.11.0",
     "sass-loader": "^6.0.7",
+    "vue-cli-plugin-i18n": "^0.5.2",
     "vue-loader": "^13.7.3",
     "vue-template-compiler": "2.6.6",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "license": "MIT"
 }

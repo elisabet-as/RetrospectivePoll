@@ -1,83 +1,91 @@
 <template>
     <div class="container">
+        <LanguageButtons @changeLocale="changeLocale"></LanguageButtons>
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo-form">
         <form class="form" @submit.prevent="sendResults">
             <component v-bind="{item}" :key="item.name" :is="item.componentName" v-for="item in formElement">
             </component>
-            <input class="send-form" type="submit">
+            <input class="send-form" type="submit" :value="$t('message.buttons.form')">
         </form>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
-    import formRadioGroup from './FormRadioGroup.vue';
-    import formTextarea from './FormTextarea.vue';
+    import FormRadioGroup from './FormRadioGroup.vue';
+    import FormTextarea from './FormTextarea.vue';
+    import i18n from '../i18n';
+    import LanguageButtons from './LanguageButtons';
+    import LanguageMixin from '../mixins/LanguageMixin';
 
     export default {
         components: { 
-            formRadioGroup,
-            formTextarea
+            FormRadioGroup,
+            FormTextarea,
+            LanguageButtons
         },
+
+        mixins:[LanguageMixin],
+
         data(){
             return {
                 formElement: [
                     {
-                        question: '¿Qué tal te encuentras?',
+                        question: 'message.form.mood',
                         answer: '',
                         answers: this.arrAnswers(5),
                         name: 'mood',
                         componentName: 'formRadioGroup' ,
                     },
                     {
-                        question: '¿Cómo crees que ha ido el mes?',
+                        question: 'message.form.month',
                         answer: '',
                         answers: this.arrAnswers(10),
                         name: 'month',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: '¿Crees que el rendimiento del equipo ha sido el adecuado?',
+                        question: 'message.form.teamPerformance',
                         answer: '',
-                        answers: ['Sí', 'No'],
+                        answers: ['message.response.positive', 'message.response.negative'],
                         name: 'teamPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: 'Pon una nota al equipo:',
+                        question: 'message.form.teamMark',
                         answer: '',
                         answers: this.arrAnswers(10),
-                        name: 'teamNote',
+                        name: 'teamMark',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: '¿Crees que tu rendimiento ha sido el adecuado?',
+                        question: 'message.form.personalPerformance',
                         answer: '',
-                        answers: ['Sí', 'No'],
+                        answers: ['message.response.positive', 'message.response.negative'],
                         name: 'personalPerformance',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: 'Ponte una nota a ti mism@:',
+                        question: 'message.form.personalMark',
                         answer: '',
                         answers: this.arrAnswers(10),
-                        name: 'personalNote',
+                        name: 'personalMark',
                         componentName:'formRadioGroup',
                     },
                     {
-                        question: '¿Qué cosas (positivas) destacarías este último mes? (personal o equipo)',
+                        question: 'message.form.positiveThings',
                         answer: '',
                         name: 'positiveThings',
                         componentName:'formTextarea',
                     },
                     {
-                        question: '¿Qué cosas crees que habría que mejorar para el siguiente mes? (personal o equipo)',
+                        question: 'message.form.thingsToImprove',
                         answer: '',
                         name: 'thingsToImprove',
                         componentName: 'formTextarea',
                     },
                     {
-                        question: '¿Ideas que se te ocurran para el siguiente mes?',
+                        question: 'message.form.ideas',
                         answer: '',
                         name: 'ideas',
                         componentName:'formTextarea',
@@ -87,6 +95,7 @@
                 failedRequests: [],
             }
         },
+
         methods: {
             arrAnswers(length) {
                 return Array.from({length}, (v, k) => k + 1);
@@ -122,7 +131,7 @@
             },
 
             isRequestCorrect(response, questionObject){ 
-                if(response.status.toString().startsWith("3")){
+                if(response.status.toString().startsWith("2")){
                     return true         
                 }else{
                     this.updateFailedRequests(questionObject);
