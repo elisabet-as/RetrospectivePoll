@@ -1,6 +1,6 @@
 <template>
     <div class="final-page">
-        <languageButtons @changeLocale="changeLocale"></languageButtons>
+        <LanguageButtons @changeLocale="changeLocale"></LanguageButtons>
         <img src="../assets/logo.svg" alt="logo-apeteat" class="logo l-final">
         <p class="final-text">{{ $t('message.finalPage.success') }}</p>
         <i class="far fa-smile-wink emoticon animated heartBeat"></i>
@@ -9,12 +9,12 @@
 
 <script>
     import i18n from '../i18n';
-    import languageButtons from './LanguageButtons';
+    import LanguageButtons from './LanguageButtons';
     import LanguageMixin from '../mixins/LanguageMixin';
 
     export default {
         components: { 
-            languageButtons
+            LanguageButtons
         },
 
         mixins:[LanguageMixin],
