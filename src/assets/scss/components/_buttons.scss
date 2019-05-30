@@ -1,0 +1,62 @@
+.access {
+    width: 100px;
+    height: 50px;
+    margin: 50px 0px 30px 0px;
+    border-radius: 5px;
+    font-size: 15px;
+    @media all and (max-width:425px) {
+        height: 40px;
+        width: 80px;
+        font-size: 12px;
+    }
+}
+
+.send-form {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    font-size: 15px;
+    @media all and (max-width:425px) {
+        height: 40px;
+        width: 100px;
+    }
+}
+
+.languages-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px 0px 0px 20px;
+    @media all and (max-width:425px) {
+        margin: 0;
+        margin-top: 20px;
+        left: 20%; 
+    }
+    @media all and (max-width:320px) {
+        left: 10%; 
+    }
+}
+
+.languages-container_form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px 20px 0px 0px;
+    @media all and (max-width:425px) {
+        margin: 0;
+        margin-top: 20px;
+        left: 20%; 
+    }
+    @media all and (max-width:320px) {
+        left: 10%; 
+    }
+}
+
+.language {
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 5px;
+}
